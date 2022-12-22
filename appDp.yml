@@ -1,37 +1,37 @@
-  apiVersion: apps/V1
-  Kind: Deployment 
-  metadata: 
-      name: appDB
-      lables:
-          app: dbApp
+apiVersion: apps/v1
+Kind: Deployment 
+metadata: 
+  name: appDB
+  lables:
+    app: dbApp
   spec:
-      selector:
-          matchlabels: dpAppC
+    selector:
+      matchlabels: dpAppC
       replicas: 1
       template:
         metadata:
           lables: dpAppC
         spec: 
-            containers:
-                - name: DBcontainer
-                  images:
-                  agrs:
-                    - "ignore-db-directory=lost+found" 
-                  volumeMounts:
+          containers:
+            - name: DBcontainer
+              images:
+                agrs:
+                  - "ignore-db-directory=lost+found" 
+                volumeMounts:
                   - mountPath: var/lib/msql
                     name: dp_vol 
-                  ports: 
+                ports: 
                     - name: Dpports
                       containerPort: 3306
-                  evn:
+                evn:
                     - name: MY_SQL_ROOT_PASSWORD
                       valueFrom: 
                           secretkeyRef: 
                               - name: secret-manager
                                 key: cGFzc3dvcmQ=
-                  nodeSecletor: 
+                nodeSecletor: 
                       zone: us-east-1a
-                  Volume:
+                Volume:
                       name: dp_vol
                       awsElasticBlockStorage:
                       volumeID: vol-014ef3ae28c0de464
