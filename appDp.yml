@@ -22,7 +22,7 @@
                     name: dp_vol 
                   ports: 
                     - name: Dpports
-                      containerPorts: 3306
+                      containerPort: 3306
                   evn:
                     - name: MY_SQL_ROOT_PASSWORD
                       valueFrom: 
